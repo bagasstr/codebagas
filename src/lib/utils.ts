@@ -14,8 +14,3 @@ export const sanity = createClient({
   useCdn: false,
   token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
 });
-
-export const createClientSupabase = createBrowserClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);

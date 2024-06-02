@@ -1,22 +1,14 @@
 import React from "react";
 
 const getData = async () => {
-  let endpoint = "development";
-  if (endpoint !== "production") {
-    endpoint = "http://localhost:3000/api/projects";
-  } else {
-    endpoint = "/api/projects";
-  }
-  try {
-    const data = await fetch(endpoint, {
-      cache: "no-store",
-    });
-    if (!data) {
-      throw new Error("Data not found");
-    }
+  const isDevelopment = process.env.NODE_ENV === "development";
+  const baseUrl = isDevelopment
+    ? process.env.NEXT_PUBLIC_BASE_URL
+    : process.env.NEXT_PUBLIC_BASE_URL;
 
-    return data.json();
-  } catch (error) {}
+  const response = await fetch(`${baseUrl}/api/projects`);
+  const data = await response.json();
+  return data;
 };
 const page = async () => {
   const data = await getData();
@@ -26,18 +18,10 @@ const page = async () => {
     <>
       <div className=''>
         <div className=''>
-          {data?.map((project: any) => (
-            <div key={project._id} className=''>
-              <h1 className=''>{project.title}</h1>
-              <div className=''>
-                {project.longDesc ? (
-                  JSON.parse(project.longDesc).map((desc: any, index: any) => (
-                    <p key={index}>{desc}</p>
-                  ))
-                ) : (
-                  <p>No description available</p>
-                )}
-              </div>
+          {data.map((index: any) => (
+            <div key={index.id}>
+              <h1 className=''>{index.title}</h1>
+              <p className=''>{index.long_desc.map((i: string) => i)}</p>
             </div>
           ))}
         </div>

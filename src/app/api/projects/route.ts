@@ -4,17 +4,13 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "edge";
 
 // Inisialisasi Supabase Client
-const supabaseUrl =
-  process.env.NEXT_PUBLIC_SUPABASE_URL! || process.env.SUPABASE_URL!;
-const supabaseKey =
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY! || process.env.SUPABASE_KEY!;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Fungsi untuk mentransformasi data
 const transformLongDesc = (longDesc: any[]) => {
-  return JSON.stringify(
-    longDesc.map((desc) => desc.children.map((text: any) => text.text))
-  );
+  return longDesc.map((desc) => desc.children.map((text: any) => text.text));
 };
 const transformData = (dataSanity: any) => {
   return {
@@ -38,15 +34,15 @@ export async function POST(req: Request) {
     const dataSanity = await req.json();
 
     // Validasi data yang diterima
-    if (
-      !dataSanity._id ||
-      !dataSanity.title ||
-      !dataSanity.slug ||
-      !dataSanity.thumbnail ||
-      !dataSanity.image
-    ) {
-      return NextResponse.json({ message: "Invalid data" }, { status: 400 });
-    }
+    // if (
+    //   !dataSanity._id ||
+    //   !dataSanity.title ||
+    //   !dataSanity.slug ||
+    //   !dataSanity.thumbnail ||
+    //   !dataSanity.image
+    // ) {
+    //   return NextResponse.json({ message: "Invalid data" }, { status: 400 });
+    // }
 
     const transformedData = transformData(dataSanity);
 
@@ -58,29 +54,29 @@ export async function POST(req: Request) {
       throw new Error(error.message);
     }
 
-    return NextResponse.json({ message: "success" });
+    return Response.json({ message: "success" });
   } catch (error) {
     console.error("Error processing request:", error);
-    return NextResponse.json({ message: "error" }, { status: 500 });
+    return Response.json({ message: "error" }, { status: 500 });
   }
 }
 
 // GET request from supabase
-// export async function GET() {
-//   try {
-//     const { data, error } = await supabase
-//       .from("projects")
-//       .select("*")
-//       .order("created_at", { ascending: false });
+export async function GET() {
+  try {
+    const { data, error } = await supabase
+      .from("projects")
+      .select("*")
+      .order("created_at", { ascending: false });
 
-//     if (error) {
-//       console.error("Error fetching data:", error);
-//       throw new Error(error.message);
-//     }
+    if (error) {
+      console.error("Error fetching data:", error);
+      throw new Error(error.message);
+    }
 
-//     return NextResponse.json(data);
-//   } catch (error) {
-//     console.error("Error processing request:", error);
-//     return NextResponse.json({ message: "error" }, { status: 500 });
-//   }
-// }
+    return Response.json(data);
+  } catch (error) {
+    console.error("Error processing request:", error);
+    return Response.json({ message: "error" }, { status: 500 });
+  }
+}

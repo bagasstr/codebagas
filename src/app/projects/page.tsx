@@ -1,8 +1,16 @@
 import React from "react";
 
 const getData = async () => {
+  let endpoint = "production";
+  if (endpoint !== "development") {
+    endpoint = "http://localhost:3000/api/projects";
+  } else {
+    endpoint = "/api/projects";
+  }
   try {
-    const data = await fetch("http://localhost:3000/api/projects");
+    const data = await fetch(endpoint, {
+      cache: "no-store",
+    });
     if (!data) {
       throw new Error("Data not found");
     }

@@ -4,8 +4,10 @@ import { NextRequest, NextResponse } from "next/server";
 export const runtime = "edge";
 
 // Inisialisasi Supabase Client
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabaseUrl =
+  process.env.NEXT_PUBLIC_SUPABASE_URL! || process.env.SUPABASE_URL!;
+const supabaseKey =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY! || process.env.SUPABASE_KEY!;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Fungsi untuk mentransformasi data

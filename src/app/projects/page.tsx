@@ -1,8 +1,8 @@
 import React from "react";
 
 const getData = async () => {
-  let endpoint = "production";
-  if (endpoint !== "development") {
+  let endpoint = "development";
+  if (endpoint !== "production") {
     endpoint = "http://localhost:3000/api/projects";
   } else {
     endpoint = "/api/projects";

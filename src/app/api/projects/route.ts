@@ -66,21 +66,21 @@ export async function POST(req: Request) {
 }
 
 // GET request from supabase
-export async function GET() {
-  try {
-    const { data, error } = await supabase
-      .from("projects")
-      .select("*")
-      .order("created_at", { ascending: false });
+// export async function GET() {
+//   try {
+//     const { data, error } = await supabase
+//       .from("projects")
+//       .select("*")
+//       .order("created_at", { ascending: false });
 
-    if (error) {
-      console.error("Error fetching data:", error);
-      throw new Error(error.message);
-    }
+//     if (error) {
+//       console.error("Error fetching data:", error);
+//       throw new Error(error.message);
+//     }
 
-    return NextResponse.json(data);
-  } catch (error) {
-    console.error("Error processing request:", error);
-    return NextResponse.json({ message: "error" }, { status: 500 });
-  }
-}
+//     return NextResponse.json(data);
+//   } catch (error) {
+//     console.error("Error processing request:", error);
+//     return NextResponse.json({ message: "error" }, { status: 500 });
+//   }
+// }

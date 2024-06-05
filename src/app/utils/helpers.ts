@@ -1,8 +1,8 @@
 export const getData = async () => {
-  const isDevelopment = process.env.NODE_ENV === "development";
+  const isDevelopment = process.env.NODE_ENV === "production";
   const baseUrl = isDevelopment
     ? process.env.NEXT_PUBLIC_BASE_URL
-    : process.env.NEXT_PUBLIC_BASE_URL;
+    : process.env.VERCEL_URL;
   try {
     const response = await fetch(`${baseUrl}/api/projects`, {
       next: { revalidate: 10 },

@@ -9,7 +9,6 @@ const components: any = {};
 const page = async ({ params }: { params: { slug: string } }) => {
   let slug = params.slug;
   const data = await getSingleData(slug);
-  console.log(data);
 
   return (
     <>

@@ -1,7 +1,6 @@
 import { sanityClient } from "@/lib/utils";
 import { NextResponse } from "next/server";
 
-export const runtime = "edge";
 export async function GET(): Promise<NextResponse> {
   try {
     const query = `*[_type == "projects"]{_id, _type, title, slug, short_desc, long_desc, tools, github, demo, thumbnail, image}`;

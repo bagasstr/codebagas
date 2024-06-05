@@ -7,7 +7,6 @@ import { getData } from "../utils/helpers";
 
 const page = async () => {
   const data = await getData();
-  // console.log(data);
 
   return (
     <>
@@ -16,7 +15,7 @@ const page = async () => {
           Collection of my projects that I've made.
         </h1>
         <div className='sm:mt-8 lg:mt-8 md:mt-8 grid sm:grid-cols-1 sm:gap-y-4 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-4'>
-          {data.map((index: any) => (
+          {data?.map((index: any) => (
             <Link
               href={`/projects/${index.slug.current}`}
               key={index._id}

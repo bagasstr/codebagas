@@ -31,9 +31,9 @@ import { defineConfig } from "sanity";
 import { structureTool } from "sanity/structure";
 import { visionTool } from "@sanity/vision";
 import { schema } from "./sanity/schema";
-const projectId = process.env.SANITY_PROJECT_ID!;
-const dataset = process.env.SANITY_DATASET || "production";
-const apiVersion = process.env.SANITY_API_VERSION!;
+const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "4hwar922";
+const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || "production";
+const apiVersion = process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2024-05-30";
 
 export default defineConfig({
   sourceMaps: false,

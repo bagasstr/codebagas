@@ -26,7 +26,7 @@ const CardProjects = ({ props }: { props: IProps }) => {
     <>
       <Card className=''>
         <CardHeader>
-          <CardTitle className='sm:text-lg md:text-lg md:font-medium lg:text-xl lg:font-medium lg:text-center'>
+          <CardTitle className='sm:text-lg sm:font-normal md:text-lg md:font-medium lg:text-xl lg:font-medium lg:text-center'>
             {props.title}
           </CardTitle>
         </CardHeader>
@@ -38,9 +38,11 @@ const CardProjects = ({ props }: { props: IProps }) => {
             alt={props.title}
           />
         </CardContent>
-        <CardFooter className='grid lg:grid-cols-[repeat(2,minmax(0,30%))] lg:justify-items-center lg:justify-center lg:gap-x-2'>
+        <CardFooter className='grid sm:grid-cols-[repeat(1,90px)] sm:justify-start md:grid-cols-[repeat(1,80px)]'>
           {props.tools.map((index: string) => (
-            <div key={index} className='flex sm:text-base'>
+            <div
+              key={index}
+              className='flex sm:text-sm md:text-sm items-center'>
               <span>
                 <Dot />
               </span>

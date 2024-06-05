@@ -27,8 +27,8 @@ const Navbar = () => {
 
   return (
     <>
-      <div className='py-8 sm:mt-4 lg:mt-8 md:mt-4'>
-        <ul className='flex sm:gap-x-8 justify-center items-center md:gap-x-8 lg:gap-x-8'>
+      <div className='py-8 sm:mt-4 lg:mt-8 md:mt-4 max-w-5xl mx-auto'>
+        <ul className='flex justify-center sm:gap-x-4 md:gap-x-8 lg:gap-x-8'>
           {dataLink.map((item, index) => (
             <li key={index}>
               <Link href={item.link} passHref>

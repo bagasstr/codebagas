@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "next-themes";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Fira_Code({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,10 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className} noSupport:hidden`}>
         <ThemeProvider attribute='class' enableSystem={true}>
           <Navbar />
-          {children}
+          <main className='sm:mt-4 md:mt-8 lg:12'>{children}</main>
         </ThemeProvider>
       </body>
     </html>

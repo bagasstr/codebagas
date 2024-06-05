@@ -1,28 +1,28 @@
+import Image from "next/image";
 import React from "react";
+import { urlForImage } from "../../../sanity/lib/image";
+import CardProjects from "@/components/CardProjects";
+import Link from "next/link";
+import { getData } from "../utils/helpers";
 
-const getData = async () => {
-  const isDevelopment = process.env.NODE_ENV === "development";
-  const baseUrl = isDevelopment
-    ? process.env.NEXT_PUBLIC_BASE_URL
-    : process.env.NEXT_PUBLIC_BASE_URL;
-
-  const response = await fetch(`${baseUrl}/api/projects`);
-  const data = await response.json();
-  return data;
-};
 const page = async () => {
   const data = await getData();
-  console.log(data);
+  // console.log(data);
 
   return (
     <>
-      <div className=''>
-        <div className=''>
+      <div className='sm:px-4 md:px-4 lg:px-4 max-w-5xl mx-auto'>
+        <h1 className='sm:text-lg sm:text-center sm:font-medium md:text-center lg:text-center lg:text-2xl lg:mt-8'>
+          Collection of my projects that I've made.
+        </h1>
+        <div className='sm:mt-8 lg:mt-8 md:mt-8 grid sm:grid-cols-1 sm:gap-y-4 md:grid-cols-3 md:gap-4 lg:grid-cols-3 lg:gap-4'>
           {data.map((index: any) => (
-            <div key={index.id}>
-              <h1 className=''>{index.title}</h1>
-              <p className=''>{index.long_desc.map((i: string) => i)}</p>
-            </div>
+            <Link
+              href={`/projects/${index.slug.current}`}
+              key={index._id}
+              className={"w-full"}>
+              <CardProjects key={index._id} props={index} />
+            </Link>
           ))}
         </div>
       </div>

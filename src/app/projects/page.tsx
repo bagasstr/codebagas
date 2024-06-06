@@ -5,7 +5,6 @@ import { getData } from "../utils/helpers";
 
 const page = async () => {
   const data = await getData();
-
   return (
     <>
       <div className='sm:px-4 md:px-4 lg:px-4 max-w-5xl mx-auto'>

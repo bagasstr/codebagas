@@ -1,5 +1,5 @@
 export const getData = async () => {
-  const response = await fetch("/api/projects", {
+  const response = await fetch(`${process.env.BASE_URL}/api/projects`, {
     next: { revalidate: 10 },
   });
 

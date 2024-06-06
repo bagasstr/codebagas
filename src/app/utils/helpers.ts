@@ -1,6 +1,6 @@
 export const getData = async () => {
   const response = await fetch("https://codebagas.vercel.app/api/projects", {
-    cache: "no-cache",
+    cache: "no-store",
   });
 
   if (!response.ok) {

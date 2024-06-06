@@ -4,9 +4,11 @@ import { urlForImage } from "../../../sanity/lib/image";
 import CardProjects from "@/components/CardProjects";
 import Link from "next/link";
 import { getData } from "../utils/helpers";
+// import { sanityClient } from "@/lib/utils";
 
 const page = async () => {
   const data = await getData();
+  console.log(data);
 
   return (
     <>

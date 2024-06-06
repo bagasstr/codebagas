@@ -1,23 +1,9 @@
+import { sanityClient } from "@/lib/utils";
+
 export const getData = async () => {
-  const isDevelopment = process.env.NODE_ENV === "production";
-  const baseUrl = isDevelopment
-    ? process.env.NEXT_PUBLIC_BASE_URL
-    : process.env.VERCEL_URL;
-  try {
-    const response = await fetch(`${baseUrl}/api/projects`, {
-      next: { revalidate: 10 },
-    });
-    if (!response.ok) {
-      throw new Error("Request failed");
-    }
-    if (!response) {
-      throw new Error("Data not found");
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    throw new Error("Failed to fetch data");
-  }
+  const query = `*[_type == "projects"]{_id, _type, title, slug, short_desc, long_desc, tools, github, demo, thumbnail, image}`;
+  const response = await sanityClient.fetch(query);
+  return response;
 };
 
 export const getSingleData = async (slug: string) => {

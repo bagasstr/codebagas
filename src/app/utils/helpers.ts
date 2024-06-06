@@ -1,9 +1,9 @@
-import { sanityClient } from "@/lib/utils";
-
 export const getData = async () => {
-  const query = `*[_type == "projects"]{_id, _type, title, slug, short_desc, long_desc, tools, github, demo, thumbnail, image}`;
-  const response = await sanityClient.fetch(query);
-  return response;
+  const response = await fetch("/api/projects", {
+    cache: "no-store",
+  });
+
+  return response.json();
 };
 
 export const getSingleData = async (slug: string) => {

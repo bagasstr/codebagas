@@ -1,12 +1,19 @@
+import { sanityClient } from "@/lib/utils";
+export const revalidate = 10;
 export const getData = async () => {
-  const response = await fetch(`${process.env.BASE_URL}/api/projects`, {
-    next: { revalidate: 10 },
-  });
-
-  if (!response.ok) {
-    throw new Error("Failed to fetch data");
-  }
-  const data = await response.json();
+  const query = `*[_type == "projects"]{
+    _id,
+    _type,
+    title,
+    slug,
+    short_desc,
+    long_desc,
+    tools,
+    github,
+    demo,
+    thumbnail,
+    image}`;
+  const data = await sanityClient.fetch(query);
   return data;
 };
 

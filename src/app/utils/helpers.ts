@@ -1,5 +1,5 @@
 export const getData = async () => {
-  const response = await fetch("https://codebagas.vercel.app/api/projects", {
+  const response = await fetch("/api/projects", {
     next: { revalidate: 10 },
   });
 
